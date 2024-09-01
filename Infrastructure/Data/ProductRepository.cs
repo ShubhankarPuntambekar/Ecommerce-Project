@@ -40,7 +40,7 @@ namespace INFRASTRUCTURE.Data
             {
                 "priceAsc" => query.OrderBy(x => x.Price),
                 "priceDesc" => query.OrderByDescending(x => x.Price),
-                _ => query.OrderBy(x => x.Name)
+                _ => query.OrderBy(x => x.Name)//default case
             };
 
 

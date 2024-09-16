@@ -17,13 +17,13 @@ namespace CORE.Specifications
 
         public int PageSize
         {
-            get { return _pageSize; }
-            set { _pageSize = value > MaxPageSize ? MaxPageSize : value; }
+            get => _pageSize;
+            set => _pageSize = (value > MaxPageSize) ? MaxPageSize : value;
         }
 
         public List<string> Brand
         {
-            get { return _brand; }
+            get => _brand;
             set
             {
                 _brand = value.SelectMany(x => x.Split(',',StringSplitOptions.RemoveEmptyEntries)).ToList();
@@ -34,7 +34,7 @@ namespace CORE.Specifications
 
         public List<string> Type
         {
-            get { return _types; }
+            get => _types;
             set
             {
                 _types = value.SelectMany(x => x.Split(',', StringSplitOptions.RemoveEmptyEntries)).ToList();

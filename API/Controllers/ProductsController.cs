@@ -15,8 +15,9 @@ namespace API.Controllers
         public async Task<ActionResult<IReadOnlyList<Product>>> GetProducts([FromQuery]ProductSpecParams specParams)
         {
             var spec = new ProductSpecification(specParams);
-           
             return await CreatePageResult(reposi, spec, specParams.PageIndex, specParams.PageSize);
+
+            
         }
 
         [HttpGet("{id:int}")]

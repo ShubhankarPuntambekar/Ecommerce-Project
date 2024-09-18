@@ -25,7 +25,7 @@ namespace API.Middleware
             }
         }
 
-        private static Task HandleExceptionAsync(HttpContext context, Exception ex, IHostEnvironment env)
+        private static Task HandleExceptionAsync(HttpContext context, Exception ex, IHostEnvironment Env)
         {
             context.Response.ContentType = "application/json";
             context.Response.StatusCode = (int)HttpStatusCode.InternalServerError;

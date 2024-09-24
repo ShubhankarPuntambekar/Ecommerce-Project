@@ -2,6 +2,8 @@ using Microsoft.EntityFrameworkCore;
 using INFRASTRUCTURE.Data;
 using CORE.Interfaces;
 using API.Middleware;
+using StackExchange.Redis;
+using INFRASTRUCTURE.Services;
 namespace API
 {
     public class Program
@@ -25,6 +27,15 @@ namespace API
             });
 
             builder.Services.AddCors();
+            builder.Services.AddSingleton<IConnectionMultiplexer>(config =>
+            {
+                var connectionString = builder.Configuration.GetConnectionString("Redis");
+                if (connectionString == null) throw new Exception("Connection string not found(Redis)");
+                var configuration = ConfigurationOptions.Parse(connectionString, true);
+                return ConnectionMultiplexer.Connect(configuration);
+            });
+
+            builder.Services.AddSingleton<ICartServices,CartService>();
 
             var app = builder.Build();
 
